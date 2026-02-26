@@ -1,0 +1,27 @@
+-name: deployvite project
+on:
+ push:
+  branches:
+      -main
+jobs:
+  build:
+       runs-on: ubuntu-latest 
+       steps:
+          name: Checkout code
+          uses: actions/checkout@v3
+          name: Setup node
+          uses: actions/setup-node@v4
+          name: Installs required npm dependencies
+          run: npm install
+          name: Build App
+          run: npm run build
+          name: Deploy app
+          uses: peaceiris/actions-gh-pages@v4
+        with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist
+
+
+
+
+      
